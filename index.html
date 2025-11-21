@@ -1060,23 +1060,23 @@
         </section>
 
         <!-- Statistics Section -->
-        <section class="stats">
+       <section class="stats" id="stats-section">
             <div class="stats-container">
                 <div class="stats-grid">
                     <div class="stat-item">
-                        <div class="stat-number">10,000+</div>
+                        <div class="stat-number" data-target="10000" data-suffix="+">0</div>
                         <div class="stat-label">Tutoring Sessions Annually</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number">92%</div>
+                        <div class="stat-number" data-target="92" data-suffix="%">0</div>
                         <div class="stat-label">Student Satisfaction Rate</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number">1,800+</div>
+                        <div class="stat-number" data-target="1800" data-suffix="+">0</div>
                         <div class="stat-label">Faculty Members Supported</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number">15+</div>
+                        <div class="stat-number" data-target="15" data-suffix="+">0</div>
                         <div class="stat-label">Years of Academic Excellence</div>
                     </div>
                 </div>
@@ -1398,6 +1398,54 @@
                 });
             }
         });
+
+        function animateCounter(element, target, duration = 2000) {
+        const suffix = element.getAttribute('data-suffix') || '';
+        const start = 0;
+        const increment = target / (duration / 16); // 60fps
+        let current = start;
+
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                current = target;
+                clearInterval(timer);
+            }
+            
+            // Format number with commas
+            const formattedNumber = Math.floor(current).toLocaleString();
+            element.textContent = formattedNumber + suffix;
+        }, 16);
+    }
+
+    // Intersection Observer for Counter Animation
+    const statsSection = document.getElementById('stats-section');
+    let hasAnimated = false;
+
+    const observerOptions = {
+        root: null,
+        threshold: 0.5,
+        rootMargin: '0px'
+    };
+
+    const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !hasAnimated) {
+                hasAnimated = true;
+                
+                // Animate all stat numbers
+                const statNumbers = document.querySelectorAll('.stat-number');
+                statNumbers.forEach(statNumber => {
+                    const target = parseInt(statNumber.getAttribute('data-target'));
+                    animateCounter(statNumber, target);
+                });
+            }
+        });
+    }, observerOptions);
+
+    if (statsSection) {
+        statsObserver.observe(statsSection);
+    }
     </script>
 </body>
 </html>
