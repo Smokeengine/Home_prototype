@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TILT - The Institute for Learning and Teaching | Colorado State University</title>
+    <style>
+        /* CSS Variables for Design System */
+        :root {
+            --csu-green: #1E4D2B;
+            --csu-green-dark: #163920;
+            --csu-gold: #C8C372;
+            --csu-gold-light: #F1EED2;
+            --white: #FFFFFF;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-900: #111827;
+            --transition: all 0.3s ease;
+        }
+
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--gray-900);
+            background: var(--white);
+        }
+
+        /* Skip to Main Content (Accessibility) */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--csu-green);
+            color: var(--white);
+            padding: 8px 16px;
+            text-decoration: none;
+            z-index: 100;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background: var(--gray-900);
+            color: var(--white);
+            padding: 8px 0;
+            font-size: 14px;
+        }
+
+        .top-bar-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-bar a {
+            color: var(--white);
+            text-decoration: none;
+            margin-left: 20px;
+            transition: var(--transition);
+        }
+
+        .top-bar a:hover {
+            color: var(--csu-gold);
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .header-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .csu-logo {
+            height: 40px;
+        }
+
+        .tilt-title {
+            display: flex;
+            flex-direction: column;
+            border-left: 2px solid var(--gray-300);
+            padding-left: 16px;
+        }
+
+        .tilt-title h1 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--csu-green);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tilt-title p {
+            font-size: 13px;
+            color: var(--gray-600);
+        }
+
+        /* Search Bar */
+        .search-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: var(--gray-100);
+            border-radius: 24px;
+            padding: 8px 16px;
+            border: 1px solid var(--gray-200);
+            transition: var(--transition);
+        }
+
+        .search-bar:focus-within {
+            background: var(--white);
+            border-color: var(--csu-green);
+            box-shadow: 0 0 0 3px rgba(30, 77, 43, 0.1);
+        }
+
+        .search-bar input {
+            border: none;
+            background: transparent;
+            outline: none;
+            padding: 4px 8px;
+            width: 200px;
+            font-size: 14px;
+        }
+
+        .search-bar button {
+            background: var(--csu-green);
+            color: var(--white);
+            border: none;
+            padding: 6px 12px;
+            border-radius: 16px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .search-bar button:hover {
+            background: var(--csu-green-dark);
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--csu-green);
+            border-bottom: 3px solid var(--csu-gold);
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            display: block;
+            color: var(--white);
+            text-decoration: none;
+            padding: 16px 24px;
+            font-size: 15px;
+            font-weight: 500;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .nav-link:hover,
+        .nav-link:focus {
+            background: var(--csu-green-dark);
+        }
+
+        .nav-link::after {
+            content: '▼';
+            font-size: 10px;
+            margin-left: 6px;
+            transition: var(--transition);
+        }
+
+        .nav-item:hover .nav-link::after {
+            transform: rotate(180deg);
+            display: inline-block;
+        }
+
+        /* Dropdown Mega Menu */
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--white);
+            min-width: 280px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: var(--transition);
+            border-top: 3px solid var(--csu-gold);
+            z-index: 100;
+        }
+
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-section {
+            padding: 20px;
+        }
+
+        .dropdown-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--csu-green);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            border-bottom: 2px solid var(--csu-gold);
+            padding-bottom: 8px;
+        }
+
+        .dropdown-links {
+            list-style: none;
+        }
+
+        .dropdown-links li {
+            margin-bottom: 8px;
+        }
+
+        .dropdown-links a {
+            color: var(--gray-700);
+            text-decoration: none;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: var(--transition);
+            font-size: 14px;
+        }
+
+        .dropdown-links a:hover,
+        .dropdown-links a:focus {
+            background: var(--csu-gold-light);
+            color: var(--csu-green);
+            padding-left: 16px;
+        }
+
+        .dropdown-links .popular {
+            position: relative;
+        }
+
+        .dropdown-links .popular::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--white);
+            font-size: 24px;
+            cursor: pointer;
+            padding: 16px 24px;
+        }
+
+        /* Breadcrumbs */
+        .breadcrumbs {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 16px 24px;
+            font-size: 14px;
+            color: var(--gray-600);
+        }
+
+        .breadcrumbs a {
+            color: var(--csu-green);
+            text-decoration: none;
+        }
+
+        .breadcrumbs a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--csu-green) 0%, var(--csu-green-dark) 100%);
+            color: var(--white);
+            padding: 80px 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="rgba(200,195,114,0.1)"/></svg>');
+            background-size: 200px;
+            opacity: 0.3;
+        }
+
+        .hero-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 700px;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 32px;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--csu-gold);
+            color: var(--csu-green-dark);
+        }
+
+        .btn-primary:hover {
+            background: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--csu-green);
+        }
+
+        /* Statistics Section */
+        .stats {
+            background: var(--white);
+            padding: 60px 24px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .stats-container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 56px;
+            font-weight: 700;
+            color: var(--csu-green);
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: var(--gray-600);
+            font-weight: 500;
+        }
+
+        /* Featured Services Section */
+        .featured-services {
+            padding: 80px 24px;
+            background: var(--gray-50);
+        }
+
+        .section-container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-header h2 {
+            font-size: 36px;
+            color: var(--csu-green);
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: var(--gray-600);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            border-top: 4px solid var(--csu-gold);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            background: var(--csu-green);
+            color: var(--white);
+            width: 64px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin: 24px;
+            border-radius: 12px;
+        }
+
+        .service-content {
+            padding: 0 24px 24px;
+        }
+
+        .service-content h3 {
+            font-size: 22px;
+            color: var(--csu-green);
+            margin-bottom: 12px;
+        }
+
+        .service-content p {
+            color: var(--gray-600);
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .service-link {
+            color: var(--csu-green);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .service-link:hover {
+            gap: 12px;
+        }
+
+        .service-link::after {
+            content: '→';
+            font-size: 20px;
+        }
+
+        /* Audience Sections */
+        .audience-section {
+            padding: 80px 24px;
+            background: var(--white);
+        }
+
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 32px;
+        }
+
+        .audience-card {
+            background: var(--white);
+            border: 2px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 32px;
+            transition: var(--transition);
+        }
+
+        .audience-card:hover {
+            border-color: var(--csu-green);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .audience-card h3 {
+            font-size: 24px;
+            color: var(--csu-green);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .audience-card h3::before {
+            content: '';
+            width: 6px;
+            height: 32px;
+            background: var(--csu-gold);
+            border-radius: 3px;
+        }
+
+        .audience-card ul {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+
+        .audience-card li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--gray-100);
+            color: var(--gray-700);
+        }
+
+        .audience-card li:last-child {
+            border-bottom: none;
+        }
+
+        /* News & Events Section */
+        .news-events {
+            padding: 80px 24px;
+            background: var(--gray-50);
+        }
+
+        .news-events-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+        }
+
+        .news-section,
+        .events-section {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 32px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            font-size: 28px;
+            color: var(--csu-green);
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 3px solid var(--csu-gold);
+        }
+
+        .news-item,
+        .event-item {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .news-item:last-child,
+        .event-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-item h4,
+        .event-item h4 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .news-item h4 a,
+        .event-item h4 a {
+            color: var(--gray-900);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .news-item h4 a:hover,
+        .event-item h4 a:hover {
+            color: var(--csu-green);
+        }
+
+        .news-meta,
+        .event-meta {
+            font-size: 14px;
+            color: var(--gray-600);
+            margin-bottom: 8px;
+        }
+
+        .event-date {
+            display: inline-block;
+            background: var(--csu-green);
+            color: var(--white);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        /* Quick Links Sidebar (Hidden on Mobile) */
+        .quick-links-section {
+            background: var(--csu-gold-light);
+            border-left: 4px solid var(--csu-gold);
+            padding: 24px;
+            border-radius: 8px;
+            margin-top: 32px;
+        }
+
+        .quick-links-section h3 {
+            font-size: 20px;
+            color: var(--csu-green);
+            margin-bottom: 16px;
+        }
+
+        .quick-links-section ul {
+            list-style: none;
+        }
+
+        .quick-links-section li {
+            margin-bottom: 12px;
+        }
+
+        .quick-links-section a {
+            color: var(--gray-700);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .quick-links-section a:hover {
+            color: var(--csu-green);
+            padding-left: 8px;
+        }
+
+        .quick-links-section a::before {
+            content: '▸';
+            color: var(--csu-green);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--csu-green-dark);
+            color: var(--white);
+            padding: 60px 24px 24px;
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--csu-gold);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 12px;
+        }
+
+        .footer-section a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.9;
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover {
+            opacity: 1;
+            color: var(--csu-gold);
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .contact-icon {
+            font-size: 20px;
+            color: var(--csu-gold);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            background: var(--csu-green);
+            color: var(--white);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            border: none;
+            font-size: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--csu-green-dark);
+            transform: translateY(-4px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .services-grid,
+            .audience-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .news-events-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background: var(--csu-green);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-item {
+                width: 100%;
+            }
+
+            .dropdown {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                display: none;
+            }
+
+            .nav-item.active .dropdown {
+                display: block;
+            }
+
+            .search-bar input {
+                width: 150px;
+            }
+
+            .tilt-title p {
+                display: none;
+            }
+
+            .stat-number {
+                font-size: 40px;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .top-bar,
+            nav,
+            .search-container,
+            .back-to-top,
+            .hero-cta {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip to Main Content -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-container">
+            <div>Colorado State University</div>
+            <div>
+                <a href="#">Students</a>
+                <a href="#">Faculty & Staff</a>
+                <a href="#">Alumni</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <svg class="csu-logo" viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="120" height="40" fill="#1E4D2B"/>
+                    <text x="10" y="25" fill="white" font-size="16" font-weight="bold">CSU</text>
+                </svg>
+                <div class="tilt-title">
+                    <h1>TILT</h1>
+                    <p>The Institute for Learning and Teaching</p>
+                </div>
+            </div>
+            <div class="search-container">
+                <div class="search-bar">
+                    <input type="search" placeholder="Search TILT..." aria-label="Search">
+                    <button type="submit">Search</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link" role="button" aria-haspopup="true" aria-expanded="false">For Students</a>
+                    <div class="dropdown">
+                        <div class="dropdown-section">
+                            <h3 class="dropdown-title">Student Services</h3>
+                            <ul class="dropdown-links">
+                                <li class="popular"><a href="#">Get Tutoring</a></li>
+                                <li><a href="#">Study Skills & Resources</a></li>
+                                <li><a href="#">Academic Coaching</a></li>
+                                <li><a href="#">Understand Academic Integrity</a></li>
+                                <li><a href="#">Testing Services</a></li>
+                                <li><a href="#">Learning Assistant Resources</a></li>
+                                <li><a href="#">Jobs at TILT</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" role="button" aria-haspopup="true" aria-expanded="false">For Faculty & Instructors</a>
+                    <div class="dropdown">
+                        <div class="dropdown-section">
+                            <h3 class="dropdown-title">Teaching Resources</h3>
+                            <ul class="dropdown-links">
+                                <li class="popular"><a href="#">Teaching Effectiveness Framework (TEF)</a></li>
+                                <li class="popular"><a href="#">AI in Teaching</a></li>
+                                <li><a href="#">Course Design & Syllabi</a></li>
+                                <li><a href="#">Assessment & Grading</a></li>
+                                <li><a href="#">Instructional Technology</a></li>
+                                <li><a href="#">Request a Consultation</a></li>
+                                <li><a href="#">Teaching Squares & Communities</a></li>
+                                <li><a href="#">Conferences & Workshops</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" role="button" aria-haspopup="true" aria-expanded="false">For Graduate Students</a>
+                    <div class="dropdown">
+                        <div class="dropdown-section">
+                            <h3 class="dropdown-title">Graduate Resources</h3>
+                            <ul class="dropdown-links">
+                                <li><a href="#">GTA Training & Certification</a></li>
+                                <li><a href="#">GSTCC Program</a></li>
+                                <li><a href="#">Teaching Resources for GTAs</a></li>
+                                <li><a href="#">Professional Development</a></li>
+                                <li><a href="#">Best Practices Guide</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" role="button" aria-haspopup="true" aria-expanded="false">Undergraduate Research</a>
+                    <div class="dropdown">
+                        <div class="dropdown-section">
+                            <h3 class="dropdown-title">OURA - Research Opportunities</h3>
+                            <ul class="dropdown-links">
+                                <li class="popular"><a href="#">CURC Showcase</a></li>
+                                <li><a href="#">Get Involved in Research</a></li>
+                                <li><a href="#">Mentored Research & Artistry</a></li>
+                                <li><a href="#">Community Engaged Learning</a></li>
+                                <li><a href="#">Student Workshops</a></li>
+                                <li><a href="#">OURA Lab</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" role="button" aria-haspopup="true" aria-expanded="false">About TILT</a>
+                    <div class="dropdown">
+                        <div class="dropdown-section">
+                            <h3 class="dropdown-title">About Us</h3>
+                            <ul class="dropdown-links">
+                                <li><a href="#">Our Mission & Services</a></li>
+                                <li><a href="#">Meet Our Staff</a></li>
+                                <li><a href="#">Contact & Locations</a></li>
+                                <li><a href="#">Annual Reports</a></li>
+                                <li><a href="#">Job Opportunities</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Breadcrumbs -->
+        <div class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="#">Home</a>
+        </div>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h2>Empowering Academic Excellence at CSU</h2>
+                    <p>Supporting students, faculty, and staff with research-based learning and teaching methods to achieve academic success, equity, and post-graduation excellence.</p>
+                    <div class="hero-cta">
+                        <a href="#" class="btn btn-primary">Get Tutoring Support</a>
+                        <a href="#" class="btn btn-secondary">Explore Faculty Resources</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Statistics Section -->
+        <section class="stats">
+            <div class="stats-container">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">10,000+</div>
+                        <div class="stat-label">Tutoring Sessions Annually</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">92%</div>
+                        <div class="stat-label">Student Satisfaction Rate</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">1,800+</div>
+                        <div class="stat-label">Faculty Members Supported</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Years of Academic Excellence</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Services -->
+        <section class="featured-services">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2>Our Core Services</h2>
+                    <p>Comprehensive academic support designed to help you succeed at every stage of your CSU journey</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">📚</div>
+                        <div class="service-content">
+                            <h3>TILT Tutoring</h3>
+                            <p>Free peer-to-peer tutoring available for CSU's most challenging courses. Drop-in sessions Sunday through Thursday, 5-8 PM at the TILT Great Hall.</p>
+                            <a href="#" class="service-link">View Tutoring Schedule</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🎓</div>
+                        <div class="service-content">
+                            <h3>Teaching Effectiveness</h3>
+                            <p>Evidence-based frameworks and resources to enhance your teaching practice. From course design to assessment strategies.</p>
+                            <a href="#" class="service-link">Explore TEF Resources</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🔬</div>
+                        <div class="service-content">
+                            <h3>Undergraduate Research</h3>
+                            <p>Connect with faculty mentors, showcase your work at CURC, and gain hands-on research experience across all disciplines.</p>
+                            <a href="#" class="service-link">Get Involved in Research</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🤖</div>
+                        <div class="service-content">
+                            <h3>AI in Education</h3>
+                            <p>Navigate the evolving landscape of AI in teaching and learning. Resources, workshops, and guidance for faculty and students.</p>
+                            <a href="#" class="service-link">Explore AI Resources</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">✓</div>
+                        <div class="service-content">
+                            <h3>Academic Integrity</h3>
+                            <p>Understand expectations, avoid plagiarism, and uphold CSU's values of honesty and ethical scholarship.</p>
+                            <a href="#" class="service-link">Learn About Integrity</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">📝</div>
+                        <div class="service-content">
+                            <h3>Testing Services</h3>
+                            <p>Secure testing accommodations, Respondus access, and proctoring services for students and instructors.</p>
+                            <a href="#" class="service-link">Access Testing Services</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Audience-Based Quick Access -->
+        <section class="audience-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2>Find Resources for Your Role</h2>
+                    <p>Tailored support designed specifically for your needs at CSU</p>
+                </div>
+                <div class="audience-grid">
+                    <div class="audience-card">
+                        <h3>For Students</h3>
+                        <ul>
+                            <li>🎯 Free tutoring in 15+ subject areas</li>
+                            <li>📖 Study skills workshops and resources</li>
+                            <li>🧠 Academic coaching for success strategies</li>
+                            <li>🔍 Undergraduate research opportunities</li>
+                            <li>💼 Learning Assistant job opportunities</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary" style="width: 100%; text-align: center;">Explore Student Services</a>
+                    </div>
+                    <div class="audience-card">
+                        <h3>For Faculty & Instructors</h3>
+                        <ul>
+                            <li>📚 Teaching Effectiveness Framework (TEF)</li>
+                            <li>🎨 Course design and syllabus templates</li>
+                            <li>🤖 AI integration guidance and workshops</li>
+                            <li>📊 Assessment and grading best practices</li>
+                            <li>👥 Teaching communities and peer support</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary" style="width: 100%; text-align: center;">View Faculty Resources</a>
+                    </div>
+                    <div class="audience-card">
+                        <h3>For Graduate Students</h3>
+                        <ul>
+                            <li>🎓 GTA training and certification programs</li>
+                            <li>📋 GSTCC professional development</li>
+                            <li>🏆 Teaching excellence recognition</li>
+                            <li>🤝 Mentoring and peer support networks</li>
+                            <li>💡 Career development workshops</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary" style="width: 100%; text-align: center;">Graduate Resources</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- News & Events -->
+        <section class="news-events">
+            <div class="section-container">
+                <div class="news-events-grid">
+                    <div class="news-section">
+                        <h3 class="section-title">TILT News & Updates</h3>
+                        <div class="news-item">
+                            <div class="news-meta">November 15, 2025</div>
+                            <h4><a href="#">TILT Tutoring Helps 300+ Students This Semester</a></h4>
+                            <p>Record-breaking tutoring attendance reflects growing student engagement and academic support needs.</p>
+                        </div>
+                        <div class="news-item">
+                            <div class="news-meta">November 10, 2025</div>
+                            <h4><a href="#">New AI Teaching Resources Now Available</a></h4>
+                            <p>Faculty can access comprehensive guides on integrating AI tools ethically and effectively.</p>
+                        </div>
+                        <div class="news-item">
+                            <div class="news-meta">November 5, 2025</div>
+                            <h4><a href="#">CURC 2026 Abstract Submissions Open</a></h4>
+                            <p>Undergraduate researchers can now submit abstracts for the spring research showcase.</p>
+                        </div>
+                        <a href="#" class="service-link" style="margin-top: 16px;">View All News</a>
+                    </div>
+                    <div class="events-section">
+                        <h3 class="section-title">Upcoming Events</h3>
+                        <div class="event-item">
+                            <span class="event-date">DEC 5, 2025</span>
+                            <h4><a href="#">AI in Education Workshop Series</a></h4>
+                            <div class="event-meta">2:00 PM - 4:00 PM | TILT Great Hall</div>
+                            <p>Learn practical strategies for using AI tools in your teaching practice.</p>
+                        </div>
+                        <div class="event-item">
+                            <span class="event-date">DEC 12, 2025</span>
+                            <h4><a href="#">Finals Week Success Strategies</a></h4>
+                            <div class="event-meta">3:30 PM - 4:30 PM | Online</div>
+                            <p>Effective study techniques and stress management for exam success.</p>
+                        </div>
+                        <div class="event-item">
+                            <span class="event-date">JAN 15, 2026</span>
+                            <h4><a href="#">Spring Teaching Effectiveness Institute</a></h4>
+                            <div class="event-meta">9:00 AM - 3:00 PM | Lory Student Center</div>
+                            <p>Full-day professional development for faculty and instructors.</p>
+                        </div>
+                        <a href="#" class="service-link" style="margin-top: 16px;">View Full Calendar</a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="quick-links-section">
+                    <h3>Popular Resources</h3>
+                    <ul>
+                        <li><a href="#">Netiquette: Online Discussion Guidelines</a></li>
+                        <li><a href="#">The Socratic Method in Teaching</a></li>
+                        <li><a href="#">Syllabus Templates & Resources</a></li>
+                        <li><a href="#">Academic Integrity Pledge</a></li>
+                        <li><a href="#">Respondus LockDown Browser</a></li>
+                        <li><a href="#">Learning Assistant Program</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Student Support</h4>
+                    <ul>
+                        <li><a href="#">TILT Tutoring</a></li>
+                        <li><a href="#">Academic Coaching</a></li>
+                        <li><a href="#">Study Skills Resources</a></li>
+                        <li><a href="#">Academic Integrity</a></li>
+                        <li><a href="#">Testing Services</a></li>
+                        <li><a href="#">Undergraduate Research</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Faculty Resources</h4>
+                    <ul>
+                        <li><a href="#">Teaching Effectiveness Framework</a></li>
+                        <li><a href="#">Course Design Tools</a></li>
+                        <li><a href="#">AI in Teaching</a></li>
+                        <li><a href="#">Professional Development</a></li>
+                        <li><a href="#">Instructional Technology</a></li>
+                        <li><a href="#">Request Consultation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Graduate Students</h4>
+                    <ul>
+                        <li><a href="#">GTA Training</a></li>
+                        <li><a href="#">GSTCC Program</a></li>
+                        <li><a href="#">Teaching Resources</a></li>
+                        <li><a href="#">Professional Development</a></li>
+                        <li><a href="#">Best Practices Guide</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact TILT</h4>
+                    <div class="footer-contact">
+                        <div class="contact-item">
+                            <span class="contact-icon">📍</span>
+                            <div>
+                                <strong>801 Oval Drive</strong><br>
+                                Fort Collins, CO 80523
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📍</span>
+                            <div>
+                                <strong>1062 Campus Delivery</strong><br>
+                                Fort Collins, CO 80523
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📞</span>
+                            <div>
+                                <strong>Phone:</strong> 970-491-4820
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">✉️</span>
+                            <div>
+                                <strong>Email:</strong> TILT@colostate.edu
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>&copy; 2025 Colorado State University</div>
+                <div class="footer-links">
+                    <a href="#">Apply to CSU</a>
+                    <a href="#">Contact CSU</a>
+                    <a href="#">Disclaimer</a>
+                    <a href="#">Equal Opportunity</a>
+                    <a href="#">Privacy Statement</a>
+                    <a href="#">Accessibility Statement</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" aria-label="Back to top">↑</button>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        const navItems = document.querySelectorAll('.nav-item');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Mobile dropdown toggle
+        navItems.forEach(item => {
+            const link = item.querySelector('.nav-link');
+            link.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    item.classList.toggle('active');
+                }
+            });
+        });
+
+        // Back to Top Button
+        const backToTopButton = document.querySelector('.back-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Accessibility: Keyboard navigation for dropdowns
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    const dropdown = link.nextElementSibling;
+                    if (dropdown) {
+                        dropdown.style.opacity = dropdown.style.opacity === '1' ? '0' : '1';
+                        dropdown.style.visibility = dropdown.style.visibility === 'visible' ? 'hidden' : 'visible';
+                    }
+                }
+            });
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-item')) {
+                document.querySelectorAll('.dropdown').forEach(dropdown => {
+                    dropdown.style.opacity = '0';
+                    dropdown.style.visibility = 'hidden';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
